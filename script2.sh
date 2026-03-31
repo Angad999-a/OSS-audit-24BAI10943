@@ -1,26 +1,12 @@
 #!/bin/bash
-# Script 2: Python Package Inspector
-
-PACKAGE="python3"
-
-echo "Checking if Python is installed..."
-
-if command -v python3 &> /dev/null
-then
-    echo "Python is installed"
-    python3 --version
-else
-    echo "Python is NOT installed"
+# Script 2: FOSS Package Inspector
+PACKAGE="VLC Media Player”
+# Check if package is installed
+if rpm -q $PACKAGE &>/dev/null; then echo "$PACKAGE is installed."
+rpm -qi $PACKAGE | grep -E 'Version|License|Summary' else
+echo "$PACKAGE is NOT installed."
 fi
-
-echo ""
-echo "About Python:"
-
-case $PACKAGE in
-    python3)
-        echo "Python is an open-source programming language known for simplicity and readability."
-        ;;
-    *)
-        echo "Unknown package"
-        ;;
+ case $PACKAGE in
+vlc) echo “VLC: open media player” ;;
+*) echo “Unknown package” ;;
 esac
